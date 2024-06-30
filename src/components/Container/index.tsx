@@ -69,7 +69,11 @@ function Container({ content, referenceElementId }: ContainerProps) {
   }, [referenceElementId, checkVisibility, handleScrollResize]);
 
   return (
-    <ContainerWrapper ref={containerRef} isOpen={isOpen} maxHeight={maxHeight}>
+    <ContainerWrapper
+      ref={containerRef}
+      $isOpen={isOpen}
+      $maxHeight={maxHeight}
+    >
       {isOpen ? (
         <OpenedContent>{content}</OpenedContent>
       ) : (

@@ -1,27 +1,31 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const ContainerWrapper = styled.div<{
-  isOpen: boolean;
-  maxHeight: number;
-}>`
+interface ContainerWrapperProps {
+  $isOpen: boolean;
+  $maxHeight: number;
+}
+
+export const ContainerWrapper = styled.div<ContainerWrapperProps>`
   position: fixed;
   bottom: 40px;
   right: 40px;
-  max-width: ${({ isOpen }) => (isOpen ? "400px" : "50px")};
-  height: ${({ isOpen, maxHeight }) => (isOpen ? `${maxHeight}px` : "50px")};
+  max-width: 50px;
+  height: 50px;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: height 0.2s ease;
   border-radius: 6px;
-  overflow: hidden;
 
-  @media (max-width: 480px) {
-    bottom: 10px;
-    right: 10px;
-    max-width: ${({ isOpen }) => (isOpen ? "90vw" : "50px")};
-    height: ${({ isOpen }) => (isOpen ? "60vh" : "50px")};
-  }
+  ${({ $isOpen, $maxHeight }) => css`
+    max-width: ${$isOpen ? "400px" : "50px"};
+    height: ${$isOpen ? `${$maxHeight}px` : "50px"};
+
+    @media (max-width: 480px) {
+      max-width: ${$isOpen ? "90vw" : "50px"};
+      height: ${$isOpen ? "60vh" : "50px"};
+    }
+  `}
 `;
 
 export const OpenedContent = styled.div`
