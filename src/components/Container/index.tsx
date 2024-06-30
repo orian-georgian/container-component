@@ -18,6 +18,8 @@ interface ContainerProps {
   referenceElementId: string;
 }
 
+const maxHeight = 300;
+
 function Container({ content, referenceElementId }: ContainerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +29,7 @@ function Container({ content, referenceElementId }: ContainerProps) {
     if (referenceElementRef.current && containerRef.current) {
       const referenceRect = referenceElementRef.current.getBoundingClientRect();
       const containerRect = containerRef.current.getBoundingClientRect();
+
       const open =
         containerRect.top + containerRect.height >= referenceRect.top &&
         containerRect.bottom <= referenceRect.bottom + containerRect.height &&
@@ -66,7 +69,7 @@ function Container({ content, referenceElementId }: ContainerProps) {
   }, [referenceElementId, checkVisibility, handleScrollResize]);
 
   return (
-    <ContainerWrapper ref={containerRef} isOpen={isOpen}>
+    <ContainerWrapper ref={containerRef} isOpen={isOpen} maxHeight={maxHeight}>
       {isOpen ? (
         <OpenedContent>{content}</OpenedContent>
       ) : (
