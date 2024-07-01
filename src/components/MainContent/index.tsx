@@ -5,7 +5,7 @@ import Container from "../Container";
 
 function MainContent() {
   return (
-    <ContentWrapper>
+    <ContentWrapper data-testid="main-content">
       <Section $bgColor={LightColors.LightGray}>
         <Content>Section number 1</Content>
       </Section>
