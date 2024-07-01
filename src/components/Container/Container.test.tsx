@@ -17,7 +17,7 @@ describe("Container component", () => {
     jest.useRealTimers();
   });
 
-  it("renders ClosedContent initially", () => {
+  test("renders ClosedContent initially", () => {
     render(
       <Container
         content={contentMock}
@@ -29,7 +29,7 @@ describe("Container component", () => {
     expect(screen.queryByTestId("opened-content")).not.toBeInTheDocument();
   });
 
-  it("renders OpenedContent when scrolled to reference element", () => {
+  test("renders OpenedContent when scrolled to reference element", () => {
     render(
       <div>
         <div style={{ height: "600px" }}>Some filler content</div>
@@ -52,7 +52,7 @@ describe("Container component", () => {
     expect(screen.getByTestId("opened-content")).toBeInTheDocument();
   });
 
-  it("cleans up event listeners on unmount", () => {
+  test("cleans up event listeners on unmount", () => {
     const removeEventListenerMock = jest.fn();
     window.removeEventListener = removeEventListenerMock;
 
